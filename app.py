@@ -59,9 +59,7 @@ def get_emotion(text):
     # Top emoji id
     emoji_ids = top_elements(prob, 5)
 
-    s = [EMOJIS[x] for x in emoji_ids]
-
-    return s
+    return emoji_ids
 
 
 # 用 log 函数把所有输出写入到文件，这样就能很方便地掌控全局了
@@ -94,14 +92,15 @@ def emotion():
     
     try:
         text = request.args['text']
-        emojis = get_emotion(text)
+        emoji_ids = get_emotion(text)
 
-        res1 = ' '.join(emojis)
-        res2 = emoji.emojize(res1)
+        emojis = map(lambda x: EMOJIS[x], emoji_ids)
+        
+        res = emoji.emojize("{} {}".format(text,' '.join(emojis)), use_aliases=True)
 
-        log('分析结果：', res1)
-        print(res2)
-        return res2
+        log('分析结果：', res)
+        print(res)
+        return res
     except:
         return 'hhh'
 
