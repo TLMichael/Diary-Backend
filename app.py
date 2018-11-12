@@ -1,13 +1,3 @@
-from flask import (
-    Flask,
-    render_template,
-    request,
-    redirect,
-    url_for,
-)
-
-import time
-
 from __future__ import print_function, division, unicode_literals
 import example_helper
 import json
@@ -21,7 +11,15 @@ from torchmoji.sentence_tokenizer import SentenceTokenizer
 from torchmoji.model_def import torchmoji_emojis
 from torchmoji.global_variables import PRETRAINED_PATH, VOCAB_PATH
 
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect,
+    url_for,
+)
 
+import time
 
 
 app = Flask(__name__)
