@@ -81,15 +81,15 @@ def log(*args, **kwargs):
 def hello_world():
     return '<h1>Hello Lue</h1>'
 
-@app.route('/emotion', methods=['POST'])
+@app.route('/emotion', methods=['GET'])
 def emotion():
 
     log('请求方法', request.method)
 
     # request.args 是 flask 保存 URL 中的参数的属性
-    # 访问 http://127.0.0.1:2000/message?a=1
+    # 访问 http://127.0.0.1:2000/emotion?text=hhh
     # 会打印如下输出 (ImmutableMultiDict 是 flask 的自定义类型, 意思是不可以改变的字典)
-    # request ImmutableMultiDict([('a', '1')])
+    # request ImmutableMultiDict([('text', 'hhh')])
     log('request, query 参数', request.args)
     
     try:
