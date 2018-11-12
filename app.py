@@ -94,11 +94,15 @@ def emotion():
     # request ImmutableMultiDict([('a', '1')])
     log('request, query 参数', request.args)
     
-    text = request.args['text']
-    emojis = get_emotion(text)
+    try:
+        text = request.args['text']
+        emojis = get_emotion(text)
 
-    log('分析结果：', ' '.join(emojis))
-    return 'hhhhh'
+        log('分析结果：', ' '.join(emojis))
+
+        return text
+    except:
+        return 'hhh'
 
 
 
