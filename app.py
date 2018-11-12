@@ -1,5 +1,5 @@
 from __future__ import print_function, division, unicode_literals
-import example_helper
+# import example_helper
 import json
 import csv
 import argparse
