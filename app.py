@@ -96,10 +96,11 @@ def emotion():
         text = request.args['text']
         emojis = get_emotion(text)
 
-        res = ' '.join(emojis)
-        log('分析结果：', res)
+        res1 = ' '.join(emojis)
+        res2 = emoji.emojize(res1)
+        log('分析结果：', res1)
 
-        return res
+        return res1 + '\n' + res2
     except:
         return 'hhh'
 
