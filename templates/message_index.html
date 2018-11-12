@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 指明字符编码为 utf-8 否则中文会乱码 -->
+    <meta charset="utf-8">
+    <title>文本情感分析</title>
+</head>
+<body>
+    <h1>文本情感分析</h1>
+
+    <form action="/emotion/analysis" method="POST">
+        请输入要分析的文本
+        <br>
+        <textarea name="msg_post"></textarea>
+        <br>
+        <button type="submit">用 POST 提交表单</button>
+    </form>
+    <!-- 下面是使用模板的办法 -->
+    {# 这是 Jinja2 模板的注释语法，这样的注释并不会在生成的 HTML 代码中出现 #}
+    {# {% %} 里面的是语句 #}
+    {# {{ }} 里面的是引用变量 #}
+    <!-- 注意 m 本身是一个字典，但是你可以用 . 的语法来引用 -->
+    <!-- 这是 Jinja2 模板的功能 -->
+    {% for m in messages %}
+        <div>{{ m.content }}</div>
+    {% endfor %}
+</body>
+</html>

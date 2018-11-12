@@ -24,6 +24,9 @@ import time
 
 app = Flask(__name__)
 
+# message_list 用来存储所有的 message
+message_list = []
+
 # Emoji map in emoji_overview.png
 EMOJIS = ":joy: :unamused: :weary: :sob: :heart_eyes: \
 :pensive: :ok_hand: :blush: :heart: :smirk: \
@@ -79,17 +82,12 @@ def log(*args, **kwargs):
 def hello_world():
     return '<h1>Hello Lue</h1>'
 
-@app.route('/emotion', methods=['GET'])
-def emotion():
+@app.route('/emotion/get', methods=['GET'])
+def emotion_get():
 
     log('请求方法', request.method)
-
-    # request.args 是 flask 保存 URL 中的参数的属性
-    # 访问 http://127.0.0.1:2000/emotion?text=hhh
-    # 会打印如下输出 (ImmutableMultiDict 是 flask 的自定义类型, 意思是不可以改变的字典)
-    # request ImmutableMultiDict([('text', 'hhh')])
     log('request, query 参数', request.args)
-    
+
     try:
         text = request.args['text']
         emoji_ids = get_emotion(text)
@@ -104,7 +102,37 @@ def emotion():
     except:
         return 'hhh'
 
+@app.route('/emotion', methods=['GET'])
+def emotion_view():
 
+    log('请求方法', request.method)
+
+    # request.args 是 flask 保存 URL 中的参数的属性
+    # 访问 http://127.0.0.1:2000/emotion?text=hhh
+    # 会打印如下输出 (ImmutableMultiDict 是 flask 的自定义类型, 意思是不可以改变的字典)
+    # request ImmutableMultiDict([('text', 'hhh')])
+    log('request, query 参数', request.args)
+    
+    return render_template('message_index.html', messages=message_list)
+
+@app.route('/emotion/analysis', methods=['POST'])
+def emotion_analysis():
+
+    log('emotion_analysis 请求方法', request.method)
+    log('request, POST 的 form 表单数据', request.form)
+
+    text = request.form.get('msg_post', 'hhh')
+    emoji_ids = get_emotion(text)
+    emojis = map(lambda x: EMOJIS[x], emoji_ids)
+    res = emoji.emojize("{} {}".format(text,' '.join(emojis)), use_aliases=True)
+
+    # 把数据生成一个 dict 存到 message_list 中去
+    msg = {
+        'content': res,
+    }
+    message_list.append(msg)
+
+    return redirect('/emotion')
 
 
 # 运行服务器
