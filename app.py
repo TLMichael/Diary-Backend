@@ -100,7 +100,7 @@ def emotion_get():
         res = emoji.emojize("{} {}".format(text,' '.join(emojis)), use_aliases=True)
 
         log('分析结果：', res)
-        print(res)
+        # print(res)
         return res
     except:
         return 'hhh'
