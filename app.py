@@ -100,7 +100,8 @@ def emotion():
         res2 = emoji.emojize(res1)
 
         log('分析结果：', res1)
-        return res1
+        print(res2)
+        return res2
     except:
         return 'hhh'
 
