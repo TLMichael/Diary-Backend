@@ -98,9 +98,9 @@ def emotion():
 
         res1 = ' '.join(emojis)
         res2 = emoji.emojize(res1)
-        log('分析结果：', res1)
 
-        return res1 + '\n' + res2
+        log('分析结果：', res1)
+        return res1
     except:
         return 'hhh'
 
