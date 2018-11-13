@@ -111,7 +111,7 @@ def emotion_post():
     log('request, POST 的 form 表单数据', request.form)
 
     try:
-        print('|||||', request.data)
+        print('|||||', request.form)
         text = request.form.get('msg_post', 'hhh')
         emoji_ids = get_emotion(text)
         emojis = map(lambda x: EMOJIS[x], emoji_ids)
