@@ -90,7 +90,7 @@ def emotion_get():
 
         emojis = map(lambda x: EMOJIS[x], emoji_ids)
         
-        res = emoji.emojize("{} {}".format(text,' '.join(emojis)), use_aliases=True)
+        res = emoji.emojize("{}".format(' '.join(emojis)), use_aliases=True)
 
         log('分析结果：', res)
         # print(res)
@@ -133,7 +133,7 @@ def emotion_analysis():
     text = request.form.get('msg_post', 'hhh')
     emoji_ids = get_emotion(text)
     emojis = map(lambda x: EMOJIS[x], emoji_ids)
-    res = emoji.emojize("{} {}".format(text,' '.join(emojis)), use_aliases=True)
+    res = emoji.emojize("{}".format(' '.join(emojis)), use_aliases=True)
 
     # 把数据生成一个 dict 存到 message_list 中去
     msg = {
