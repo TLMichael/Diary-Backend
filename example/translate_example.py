@@ -14,5 +14,5 @@ import os
 
 command = 'proxychains translate ' + text
 
-res = os.system(command)
-print(text, res)
+res = os.popen(command, 'r')
+print(text, res.read())
