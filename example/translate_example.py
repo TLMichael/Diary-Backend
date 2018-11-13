@@ -1,4 +1,4 @@
-from googleletrans import Translator
+from googletrans import Translator
 
 translator = Translator()
 
