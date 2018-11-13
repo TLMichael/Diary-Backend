@@ -1,5 +1,5 @@
 import json
-import urllib2
+import urllib.request as urllib2
 import hashlib
 
 def md5(str):#生成md5
