@@ -50,7 +50,16 @@ st = SentenceTokenizer(vocabulary, 50)
 # Loading model
 model = torchmoji_emojis(PRETRAINED_PATH)
 
+def translate(text):
+
+    res = text
+
+    return res
+
 def get_emotion(text):
+
+    text = translate(text)
+
     def top_elements(array, k):
         ind = np.argpartition(array, -k)[-k:]
         return ind[np.argsort(array[ind])][::-1]
@@ -108,10 +117,11 @@ def emotion_get():
 def emotion_post():
 
     log('emotion_analysis 请求方法', request.method)
-    log('request, POST 的 form 表单数据', request.form)
+    log('request, POST 的 data 数据', request.data)
 
     try:
-        print('|||||', request.form)
+        # print('|||||', request.data)
+
         text = request.form.get('msg_post', 'hhh')
         emoji_ids = get_emotion(text)
         emojis = map(lambda x: EMOJIS[x], emoji_ids)
