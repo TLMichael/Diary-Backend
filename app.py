@@ -10,8 +10,6 @@ from torchmoji.sentence_tokenizer import SentenceTokenizer
 from torchmoji.model_def import torchmoji_emojis
 from torchmoji.global_variables import PRETRAINED_PATH, VOCAB_PATH
 
-from example
-
 from flask import (
     Flask,
     render_template,
@@ -57,7 +55,7 @@ model = torchmoji_emojis(PRETRAINED_PATH)
 
 def get_emotion(text):
 
-    text = translate(text)
+    text = baidu_translate(text)
 
     def top_elements(array, k):
         ind = np.argpartition(array, -k)[-k:]
