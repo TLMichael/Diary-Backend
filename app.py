@@ -104,6 +104,22 @@ def emotion_get():
     except:
         return 'hhh'
 
+@app.route('/emotion/post', methods=['POST'])
+def emotion_post():
+
+    log('emotion_analysis 请求方法', request.method)
+    log('request, POST 的 form 表单数据', request.form)
+
+    try:
+        text = request.form.get('msg_post', 'hhh')
+        emoji_ids = get_emotion(text)
+        emojis = map(lambda x: EMOJIS[x], emoji_ids)
+        res = emoji.emojize("{} {}".format(text,' '.join(emojis)), use_aliases=True)
+        log('分析结果：', res)
+        return res
+    except:
+        return 'hhh'
+    
 @app.route('/emotion', methods=['GET'])
 def emotion_view():
 
