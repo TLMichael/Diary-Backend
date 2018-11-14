@@ -20,7 +20,7 @@ application = app.app
 ➜  ~ cat /etc/supervisor/conf.d/xx.conf
 
 [program:emotion]
-command=/root/anaconda3/envs/torch/bin/gunicorn wsgi --bind 0.0.0.0:2000 --pid /tmp/emotion.pid
+command=/root/anaconda3/envs/torch/bin/gunicorn wsgi --bind 0.0.0.0:2000 --pid /tmp/emotion.pid 2>&1 &
 directory=/root/diary/Diary-Backend
 autostart=true
 """
