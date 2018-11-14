@@ -110,6 +110,8 @@ def emotion_get_all():
     
     res = emoji.emojize("{}".format(' '.join(emojis)), use_aliases=True)
 
+    print(type(res))
+    print(res[0])
     # print(res)
     return res
 
