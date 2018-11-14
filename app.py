@@ -98,6 +98,22 @@ def emotion_get():
     except:
         return 'hhh'
 
+@app.route('/emotion/get_all', methods=['GET'])
+def emotion_get_all():
+
+    # log('请求方法', request.method)
+    # log('request, query 参数', request.args)
+
+    emoji_ids = range(64)
+
+    emojis = map(lambda x: EMOJIS[x], emoji_ids)
+    
+    res = emoji.emojize("{}".format(' '.join(emojis)), use_aliases=True)
+
+    # print(res)
+    return res
+
+
 @app.route('/emotion/post', methods=['POST'])
 def emotion_post():
 
