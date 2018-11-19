@@ -2,6 +2,7 @@ from __future__ import print_function, division, unicode_literals
 import json
 import csv
 import argparse
+import os
 
 import numpy as np
 import emoji
@@ -16,6 +17,7 @@ from flask import (
     request,
     redirect,
     url_for,
+    send_from_directory,
 )
 
 from utils import (
@@ -74,6 +76,12 @@ def get_emotion(text):
 @app.route('/', methods=['GET'])
 def hello_world():
     return '<h1>Hello Lue</h1>'
+
+@app.route("/download/<filename>", methods=['GET'])
+def download_file(filename):
+    # 需要知道2个参数, 第1个参数是本地目录的path, 第2个参数是文件名(带扩展名)
+    directory = os.path.join(os.getcwd(), 'download')  # 假设在当前目录
+    return send_from_directory(directory, filename, as_attachment=True)
 
 # 访问 http://127.0.0.1:2000/emotion/get?text=hhh
 # 会打印如下输出 (ImmutableMultiDict 是 flask 的自定义类型, 意思是不可以改变的字典)
